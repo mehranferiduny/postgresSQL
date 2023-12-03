@@ -1,5 +1,5 @@
 const express = require('express');
-const { Pool } = require('pg');
+
 
 const app = express();
 const port = 3000;
@@ -7,19 +7,12 @@ const port = 3000;
 
 app.use(express.json());
 
-// تنظیمات اتصال به دیتابیس PostgreSQL
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'users',
-  password: 'M3hr4nus',
-  port: 5432,
-});
+
 
 // خواندن اطلاعات از دیتابیس
 app.get('/users', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
+   
     res.json(result.rows);
   } catch (error) {
     console.error('Error executing query', error);
