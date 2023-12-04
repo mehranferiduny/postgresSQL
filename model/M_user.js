@@ -1,8 +1,13 @@
 const {pool}=require('../utils/db_postgras')
 
 class Model_User{
-  static getUser=async()=>{
+  static getUsers=async()=>{
     const result = await pool.query('SELECT * FROM users');
+    return result.rows;
+  }
+
+  static getUser=async(email)=>{
+    const result = await pool.query('SELECT * FROM users WHERE email = $1 ',[email]);
     return result.rows;
   }
 
@@ -21,3 +26,5 @@ class Model_User{
     return result.rows[0];
   }
 }
+
+module.exports=Model_User;
