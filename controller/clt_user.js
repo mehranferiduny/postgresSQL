@@ -78,7 +78,7 @@ exports.deleteUser=async(req,res)=>{
       res.status(401).send('id is not database');
       return 1;
     }
-
+    
     await ModelUser.deleteUser(userid[0].id)
     res.status(201).send('OK');
 
