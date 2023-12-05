@@ -10,6 +10,10 @@ class Model_User{
     const result = await pool.query('SELECT * FROM users WHERE email = $1 ',[email]);
     return result.rows;
   }
+  static findUser=async(id)=>{
+    const result = await pool.query('SELECT * FROM users WHERE id = $1 ',[id]);
+    return result.rows;
+  }
 
   static insertUser=async (name,email)=>{
     const result = await pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email]);
@@ -21,7 +25,7 @@ class Model_User{
     return result.rows[0]
   }
 
-  static deleteUser=async (id)=>{
+  static deleteUser=async (userId)=>{
     const result = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *', [userId]);
     return result.rows[0];
   }
