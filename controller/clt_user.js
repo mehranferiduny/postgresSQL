@@ -20,7 +20,7 @@ exports.addUser=async(req,res)=>{
 
   try {
     const user=await ModelUser.getUsers({email:email});
-    console.log(user);
+  
     if(user) {
       res.status(401).send('you email acconted');
       return;
